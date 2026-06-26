@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — derived from the provided brand palette
+   (Arctic Powder / Forsythia / Nocturnal Expedition /
+   Mystic Mint / Deep Saffron / Oceanic Noir) and the
+   JetBrains Mono + Inter typography pairing.
+   ============================================================ */
+:root {
+  /* Brand palette — exact hex values from asset package */
+  --arctic-powder: #f1f6f4;
+  --mystic-mint: #d9e8e2;
+  --forsythia: #ffc801;
+  --deep-saffron: #ff9932;
+  --nocturnal: #114c5a;
+  --oceanic-noir: #172b36;
+
+  /* Surface system (dark, technical, Oceanic-Noir led) */
+  --surface-0: #0d1a20;
+  --surface-1: var(--oceanic-noir);
+  --surface-2: #1f3744;
+  --surface-3: #2a4652;
+  --border-subtle: rgba(217, 232, 226, 0.08);
+  --border-default: rgba(217, 232, 226, 0.14);
+  --border-strong: rgba(217, 232, 226, 0.24);
+
+  /* Text */
+  --text-primary: var(--arctic-powder);
+  --text-secondary: rgba(241, 246, 244, 0.64);
+  --text-tertiary: rgba(241, 246, 244, 0.4);
+  --text-on-accent: var(--oceanic-noir);
+
+  /* Accent roles */
+  --accent: var(--forsythia);
+  --accent-strong: var(--deep-saffron);
+  --focus-ring: var(--forsythia);
+
+  /* Type — self-hosted via @fontsource, no external request at runtime */
+  --font-display: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Motion — exact spec from problem statement */
+  --ease-out-micro: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-layout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 180ms;
+  --dur-layout: 350ms;
+
+  /* Layout */
+  --container-max: 1280px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+@theme inline {
+  --color-arctic-powder: var(--arctic-powder);
+  --color-mystic-mint: var(--mystic-mint);
+  --color-forsythia: var(--forsythia);
+  --color-deep-saffron: var(--deep-saffron);
+  --color-nocturnal: var(--nocturnal);
+  --color-oceanic-noir: var(--oceanic-noir);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html {
+  background: var(--surface-0);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-feature-settings: "ss01" 1, "cv01" 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--forsythia);
+  color: var(--oceanic-noir);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Scrollbar — subtle, on-brand */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-0);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 999px;
+  border: 2px solid var(--surface-0);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Shared utility layer — kept native, no component libs */
+.container-shell {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.noise-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loader-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
