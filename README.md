@@ -1,4 +1,4 @@
-# Solace — Frontend Battle, Phase 1 Submissions
+# Solace — Frontend Battle, Phase 1 Submission
  **Hackathon**
 
 A premium landing page for an AI data-automation platform, built for the
