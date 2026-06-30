@@ -1,5 +1,5 @@
 # Solace — Frontend Battle, Phase 1 Submission
- **Hackathon**
+ **Hackathon** - **12h**
 
 A premium landing page for an AI data-automation platform, built for the
 **Next-Gen AI Platform Speed Run** brief: matrix-driven pricing with
