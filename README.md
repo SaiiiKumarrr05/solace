@@ -95,9 +95,4 @@ required.
   pricing feature bullets) via the shared `Icon` component — none are
   decorative-only or unused.
 
-## 7. What's intentionally NOT included
 
-Per the brief's Zero-Dependency Rule, there is no Framer Motion, Radix,
-Shadcn, HeadlessUI, or any runtime animation/UI component library in
-`package.json` or its dependency tree. All motion is native CSS
-transitions/animations or the Web Animations API (`element.animate()`).
